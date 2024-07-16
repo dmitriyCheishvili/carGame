@@ -19,6 +19,7 @@ public class calapController : MonoBehaviour
     float timeLastPassedCheckPount = 0;
     public int scoreCrug = 0;
 
+
     public int numOfPassedCheckPount;
 
     public event Action<calapController> OnPassCheclPoint;
@@ -44,6 +45,15 @@ public class calapController : MonoBehaviour
 
     void Update()
     {
+        playerScoreCrug();
+
+        NPCScoreCrug();
+
+        Fin();
+    }
+
+    void playerScoreCrug()
+    {
         if (numOfPassedCheckPount == 6)
         {
             passedCheckPountNumber = 0;
@@ -52,8 +62,20 @@ public class calapController : MonoBehaviour
             scoreCrug++;
 
             textToEdit.text = scoreCrug.ToString();
+        }
+    }
 
-            Fin();
+
+    void NPCScoreCrug()
+    {
+        if (numOfPassedCheckPount == 6)
+        {
+            passedCheckPountNumber = 0;
+            numOfPassedCheckPount = 0;
+
+            scoreCrug++;
+
+           
         }
     }
 

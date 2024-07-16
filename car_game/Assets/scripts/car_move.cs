@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class car_move : MonoBehaviour
 {
+
+    calapController calap;
+
     public float driftFactor = 0.7f;
     public float carSpeed = 30f;
     public float turnFactor = 3.5f;
@@ -22,11 +25,17 @@ public class car_move : MonoBehaviour
     private void Awake()
     {
         rbCar = GetComponent<Rigidbody2D>();
+        calap = GetComponent<calapController>();
     }
 
 
     private void FixedUpdate()
     {
+
+        if (GameManager.instance.GetGameStates() == GameStates.countDown)
+        {
+            return;
+        }
 
         KillOrthogonalVelocity();
 
@@ -114,5 +123,6 @@ public class car_move : MonoBehaviour
         return rbCar.velocity.magnitude;
     }
 
+   
 }
 
